@@ -1,16 +1,13 @@
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-// Extend ImportMeta to include 'env' property for Vite
-interface ImportMetaEnv {
-  VITE_API_URL?: string;
+declare global {
+  interface ImportMeta {
+    readonly env: Record<string, string>
+  }
 }
 
-interface ImportMeta {
-  env: ImportMetaEnv;
-}
-
-const API_URL = import.meta.env.VITE_API_URL || 'https://festspace-backend.onrender.com/api'
+const API_URL = import.meta.env.VITE_API_URL
 
 const api = axios.create({
   baseURL: API_URL,
