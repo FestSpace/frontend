@@ -5,5 +5,11 @@ export default defineConfig({
   plugins: [react(),],
   server: {
     port: 5173,
+    proxy: {
+      '/api': {
+        target: 'https://festspace-backend.onrender.com',
+        changeOrigin: true
+      }
+    }
   }
 })
