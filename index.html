@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Meta Tags Essenciais -->
+    <title>FestSpace - Encontre o Espaço Perfeito para Sua Festa</title>
+    <meta name="description" content="Alugue salões, áreas de lazer e sítios para festas. Conectamos anfitriões e convidados para criar momentos inesquecíveis. Encontre o local ideal para sua celebração." />
+    
+    <!-- Meta Tags para SEO -->
+    <meta name="keywords" content="aluguel de espaço para festas, salão de festas, área de lazer, sítio para festa, locação de espaço, festas, eventos, comemorações" />
+    <meta name="author" content="FestSpace" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://festspace.com/" />
+    <meta property="og:title" content="FestSpace - Encontre o Espaço Perfeito para Sua Festa" />
+    <meta property="og:description" content="Alugue salões, áreas de lazer e sítios para festas. Conectamos anfitriões e convidados para criar momentos inesquecíveis." />
+    <meta property="og:image" content="https://festspace.com/og-image.jpg" />
+    <meta property="og:site_name" content="FestSpace" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://festspace.com/" />
+    <meta property="twitter:title" content="FestSpace - Encontre o Espaço Perfeito para Sua Festa" />
+    <meta property="twitter:description" content="Alugue salões, áreas de lazer e sítios para festas. Conectamos anfitriões e convidados para criar momentos inesquecíveis." />
+    <meta property="twitter:image" content="https://festspace.com/twitter-image.jpg" />
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "FestSpace",
+      "url": "https://festspace.com",
+      "logo": "https://festspace.com/logo.png",
+      "description": "Plataforma para aluguel de espaços para festas e eventos",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-11-99999-9999",
+        "contactType": "customer service",
+        "email": "contato@festspace.com"
+      },
+      "sameAs": [
+        "https://www.facebook.com/festspace",
+        "https://www.instagram.com/festspace",
+        "https://www.linkedin.com/company/festspace"
+      ]
+    }
+    </script>
+    
+    <!-- Preload de Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload de Recursos Críticos -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://festspace.com" />
+    
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "FestSpace",
+      "image": "https://festspace.com/logo.png",
+      "description": "Plataforma para aluguel de espaços para festas e eventos",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Paulista",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "postalCode": "01310-100",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-23.563987",
+        "longitude": "-46.653256"
+      },
+      "url": "https://festspace.com",
+      "telephone": "+55-11-99999-9999",
+      "priceRange": "R$",
+      "openingHours": "Mo-Su 08:00-22:00",
+      "areaServed": "Brasil"
+    }
+    </script>
+    
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- CSS -->
+    <link href="/dist/index.css" rel="stylesheet">
+    
+    <!-- Critical CSS (Inline para performance) -->
+    <style>
+      /* Critical CSS para loading inicial */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        color: white;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      
+      .loading-spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 16px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      
+      .loading-subtext {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+      
+      /* Hide app until loaded */
+      #root:not(:has(*)) {
+        opacity: 0;
+      }
+      
+      /* Basic styles for initial render */
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">FestSpace</div>
+      <div class="loading-subtext">Carregando...</div>
+    </div>
+
+    <!-- React App Root -->
+    <div id="root"></div>
+    
+    <!-- Noscript Fallback -->
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <h1>FestSpace - JavaScript Necessário</h1>
+        <p>Para utilizar a plataforma FestSpace, é necessário habilitar o JavaScript em seu navegador.</p>
+        <p>Se você precisa de assistência, entre em contato conosco:</p>
+        <p>
+          <strong>Email:</strong> contato@festspace.com<br>
+          <strong>Telefone:</strong> (11) 99999-9999
+        </p>
+      </div>
+    </noscript>
+
+    <!-- Vite Script -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Loading Screen Removal Script -->
+    <script>
+      // Remove loading screen when app is mounted
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loadingScreen.remove(), 500);
+          }
+        }, 1000);
+      });
+      
+      // Service Worker Registration (para PWA futuro)
+      {/*if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('SW registered: ', registration);
+          }).catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+        });
+      }*/}
+    </script>
+    
+    <!-- Analytics (exemplo com Google Analytics) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+  </body>
+</html>
