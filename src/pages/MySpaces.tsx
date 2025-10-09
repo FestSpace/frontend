@@ -203,7 +203,7 @@ const MySpaces: React.FC = () => {
               {hasActiveSubscription && (
                 <button 
                   onClick={() => setIsCreateModalOpen(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium auto py-2 px-4 rounded-lg flex items-center space-x-2 mx-auto"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Adicionar Espaço</span>
