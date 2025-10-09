@@ -185,7 +185,7 @@ const Plans: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                   <div className="flex items-baseline justify-center">
-                    <span className="text-4xl font-bold text-gray-900">R$ {plan.price}</span>
+                    <span className="text-4xl font-bold text-gray-900">R$ {(plan.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</span>
                     <span className="text-gray-600 ml-2">/mês</span>
                   </div>
                 </div>
