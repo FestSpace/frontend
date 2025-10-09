@@ -128,14 +128,15 @@ const CreateSpaceModal: React.FC<CreateSpaceModalProps> = ({
       formData.append('state', data.state.toUpperCase().replace(/[^A-Z]/g, ''))
       formData.append('price', data.price.toString())
       formData.append('capacity', data.capacity.toString())
-      
+
       selectedAmenities.forEach(amenityId => {
+        // Encontrar o amenity pelo ID e pegar o label
         const amenity = AMENITIES.find(a => a.id === amenityId)
         if (amenity) {
           formData.append('amenities', amenity.label)
-          console.log(`➕ Amenity: ${amenity.label}`)
         }
       })
+
 
       // Adicionar imagens
       images.forEach(image => {
