@@ -128,7 +128,7 @@ const CreateSpaceModal: React.FC<CreateSpaceModalProps> = ({
       formData.append('state', data.state.toUpperCase())
       formData.append('price', data.price.toString())
       formData.append('capacity', data.capacity.toString())
-      formData.append('amenities', JSON.stringify(selectedAmenities))
+      formData.append('amenities[]', JSON.stringify(selectedAmenities))
 
       // Adicionar imagens
       images.forEach(image => {
