@@ -15,20 +15,32 @@ const MySpaces: React.FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const { user } = useAuth()
 
-  useEffect(() => {
-    loadSpaces()
-  }, [])
-
   const loadSpaces = async () => {
     try {
-      const response = await spacesAPI.getMySpaces()
-      setSpaces(response.data)
+      const response = await spacesAPI.getMySpaces({
+        limit: 5,
+      })
+
+      if (response.data && response.data.data && Array.isArray(response.data.data.spaces)) {
+        setSpaces(response.data.data.spaces)
+      } else if (response.data && Array.isArray(response.data.spaces)) {
+        setSpaces(response.data.spaces)
+      } else if (Array.isArray(response.data)) {
+        setSpaces(response.data)
+      } else {
+        setSpaces([])
+      }
+
     } catch (error) {
       toast.error('Erro ao carregar seus espaços')
     } finally {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    loadSpaces()
+  }, [user])
 
   const handleCreateSuccess = () => {
     loadSpaces() // Recarregar a lista
@@ -184,8 +196,17 @@ const MySpaces: React.FC = () => {
           )}
         </div>
 
-        {/* Spaces Grid */}
-        {spaces.length === 0 ? (
+        {!Array.isArray(spaces) ? (
+          <div className="text-center py-8">
+            <p className="text-red-500">Erro: dados inválidos recebidos</p>
+            <button 
+              onClick={loadSpaces}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+            >
+              Tentar Novamente
+            </button>
+        </div>
+        ) : spaces.length === 0 ? (
           <div className="card p-12 text-center">
             <div className="max-w-md mx-auto">
               <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -318,6 +339,9 @@ const MySpaces: React.FC = () => {
             ))}
           </div>
         )}
+
+        {/* Spaces Grid */}
+        { !Array.isArray(spaces) ? (<div></div>) : (<></>)}
 
         {/* Upgrade Prompt */}
         {hasActiveSubscription && usedSpaces >= planLimits.spaces && (

@@ -17,7 +17,7 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -93,7 +93,21 @@ export const spacesAPI = {
       headers: { 'Content-Type': 'multipart/form-data' }
     }),
   delete: (id: string) => api.delete(`/spaces/${id}`),
-  getMySpaces: () => api.get('/user/my-spaces'),
+  getMySpaces: async (params?: any) => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+
+    if(!token) {
+      throw new Error('Token de acesso não encontrado')
+    }
+
+    return api.get('/spaces/user/my-spaces', {
+      params,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  },
+  getMyOwnSpaces: (params?: any) => api.get('/spaces/user/my-spaces', { params }),
   toggleActive: (id: string, active: boolean) =>
     api.patch(`/spaces/${id}/status`, { isActive: active }),
 }
