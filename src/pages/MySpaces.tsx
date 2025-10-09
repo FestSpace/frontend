@@ -5,12 +5,14 @@ import { spacesAPI, subscriptionAPI } from '../services/api'
 import { Space, Subscription } from '../types'
 import { useAuth } from '../contexts/AuthContext'
 import { LoadingSpinner } from '../components/ui/LoadingSpinner'
+import CreateSpaceModal from '../components/spaces/CreateSpaceModal'
 import toast from 'react-hot-toast'
 
 const MySpaces: React.FC = () => {
   const [spaces, setSpaces] = useState<Space[]>([])
   const [loading, setLoading] = useState(true)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const { user } = useAuth()
 
   useEffect(() => {
@@ -26,6 +28,11 @@ const MySpaces: React.FC = () => {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleCreateSuccess = () => {
+    loadSpaces() // Recarregar a lista
+    toast.success('Espaço criado com sucesso!')
   }
 
   const handleDeleteSpace = async (spaceId: string) => {
@@ -167,10 +174,13 @@ const MySpaces: React.FC = () => {
           </h2>
           
           {hasActiveSubscription && usedSpaces < planLimits.spaces && (
-            <Link to="/spaces/new" className="btn-primary flex items-center space-x-2">
+            <button 
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
+            >
               <Plus className="h-4 w-4" />
               <span>Adicionar Espaço</span>
-            </Link>
+            </button>
           )}
         </div>
 
@@ -324,6 +334,12 @@ const MySpaces: React.FC = () => {
             </div>
           </div>
         )}
+        {/* Modal de Criação */}
+        <CreateSpaceModal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onSuccess={handleCreateSuccess}
+        />
       </div>
     </div>
   )
