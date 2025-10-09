@@ -40,24 +40,39 @@ const Plans: React.FC = () => {
   }
 
   const handleSubscribe = async (planId: string) => {
-    if (!user) {
-      toast.error('Você precisa estar logado para assinar um plano')
-      return
-    }
-
-    try {
-      setProcessing(true)
-      setSelectedPlan(planId)
-      
-      const response = await subscriptionAPI.createCheckoutSession(planId)
-      window.location.href = response.data.url
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Erro ao processar assinatura')
-      setSelectedPlan(null)
-    } finally {
-      setProcessing(false)
-    }
+  if (!user) {
+    toast.error('Você precisa estar logado para assinar um plano')
+    return
   }
+
+  try {
+    setProcessing(true)
+    setSelectedPlan(planId)
+    
+    console.log('🛒 Iniciando assinatura do plano:', planId)
+    
+    const response = await subscriptionAPI.createCheckoutSession(planId)
+    
+    if (response.data.url) {
+      console.log('✅ Redirecionando para checkout:', response.data.url)
+      window.location.href = response.data.url
+    } else {
+      throw new Error('URL de checkout não recebida')
+    }
+  } catch (error: any) {
+    console.error('❌ Erro no checkout:', error)
+    
+    // Mensagem de erro mais específica
+    const errorMessage = error.response?.data?.message || 
+                        error.response?.data?.error || 
+                        'Erro ao processar assinatura. Tente novamente.'
+    
+    toast.error(errorMessage)
+    setSelectedPlan(null)
+  } finally {
+    setProcessing(false)
+  }
+}
 
   const getPlanIcon = (planId: string) => {
     switch (planId) {
