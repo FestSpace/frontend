@@ -93,7 +93,7 @@ export const spacesAPI = {
       headers: { 'Content-Type': 'multipart/form-data' }
     }),
   delete: (id: string) => api.delete(`/spaces/${id}`),
-  getMySpaces: () => api.get('/spaces/my-spaces'),
+  getMySpaces: () => api.get('/user/my-spaces'),
   toggleActive: (id: string, active: boolean) =>
     api.patch(`/spaces/${id}/status`, { isActive: active }),
 }

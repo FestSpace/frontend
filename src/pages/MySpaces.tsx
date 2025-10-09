@@ -201,9 +201,13 @@ const MySpaces: React.FC = () => {
                 }
               </p>
               {hasActiveSubscription && (
-                <Link to="/spaces/new" className="btn-primary rounded-lg">
-                  Criar Primeiro Espaço
-                </Link>
+                <button 
+                  onClick={() => setIsCreateModalOpen(true)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center space-x-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Adicionar Espaço</span>
+                </button>
               )}
             </div>
           </div>
