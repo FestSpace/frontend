@@ -201,7 +201,7 @@ const MySpaces: React.FC = () => {
                 }
               </p>
               {hasActiveSubscription && (
-                <Link to="/spaces/new" className="btn-primary">
+                <Link to="/spaces/new" className="btn-primary rounded-lg">
                   Criar Primeiro Espaço
                 </Link>
               )}
