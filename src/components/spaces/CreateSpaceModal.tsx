@@ -125,10 +125,12 @@ const CreateSpaceModal: React.FC<CreateSpaceModalProps> = ({
       formData.append('description', data.description)
       formData.append('address', data.address)
       formData.append('city', data.city)
-      formData.append('state', data.state.toUpperCase())
+      formData.append('state', data.state.toUpperCase().replace(/[^A-Z]/g, ''))
       formData.append('price', data.price.toString())
       formData.append('capacity', data.capacity.toString())
-      formData.append('amenities[]', JSON.stringify(selectedAmenities))
+      selectedAmenities.forEach(amenity => {
+        formData.append('amenities', amenity)
+      })
 
       // Adicionar imagens
       images.forEach(image => {
@@ -314,8 +316,12 @@ const CreateSpaceModal: React.FC<CreateSpaceModalProps> = ({
                     {...register('state', { 
                       required: 'Estado é obrigatório',
                       pattern: {
-                        value: /^[A-Z]{2}$/,
+                        value: /^[A-Za-z]{2}$/,
                         message: 'Use 2 letras (ex: SP)'
+                      },
+                      onChange: (e) => {
+                        // Converte para maiúsculas automaticamente
+                        e.target.value = e.target.value.toUpperCase().replace(/[^A-Za-z]/g, '')
                       }
                     })}
                     type="text"
