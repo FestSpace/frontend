@@ -13,7 +13,6 @@ const SpaceCard: React.FC<SpaceCardProps> = ({ space, featured = false }) => {
     return null
   }
   
-  const mainImage = space.images[0] || '/placeholder-space.jpg'
   const isPremium = space.user.subscription?.plan === 'premium'
 
   const getPlanBadge = (plan?: string) => {
@@ -35,14 +34,19 @@ const SpaceCard: React.FC<SpaceCardProps> = ({ space, featured = false }) => {
       className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200 block h-full"
     >
       <div className="relative">
-        <img
-          src={mainImage}
-          alt={space.title}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
+        { space.images && space.images.length > 0 ? (
+          <img
+            src={space.images[0]}
+            alt={space.title}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <img
+            src={space.images[0] || '/placeholder-space.jpg'}
+            alt={space.title}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        )}
         
         {/* Rating */}
         <div className="absolute top-3 right-3 bg-white rounded-full px-2 py-1 flex items-center space-x-1 shadow-lg">
